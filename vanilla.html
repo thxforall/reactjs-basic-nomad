@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Before React</title>
+  </head>
+  <body>
+    <span id="total-click">Total Clicks : 0</span>
+    <button id="btn">Click Me</button>
+  </body>
+  <script>
+    const buttonElement = document.getElementById('btn');
+    const totalClickElement = document.getElementById('total-click');
+    let count = 0;
+
+    function handleClick() {
+      count += 1;
+      totalClickElement.innerHTML = `Total Clicks : ` + `${count}`;
+    }
+
+    buttonElement.addEventListener('click', handleClick);
+  </script>
+</html>
