@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Add React in One Minute</title>
+    <title>React Counter Example</title>
   </head>
   <body>
     <div id="root"></div>
@@ -17,56 +17,28 @@
   ></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const root = document.getElementById('root');
-    const Title = () => (
-      <h3 id="title" onMouseEnter={() => console.log('mouse enter!')}>
-        Click Me!
-      </h3>
-    );
-    const Button = () => (
-      <button
-        style={{ backgroundColor: 'tomato' }}
-        onClick={() => console.log('Clicked')}
-      >
-        Click Me!!
-      </button>
-    );
+    const { useState } = React;
+    const { createRoot } = ReactDOM;
 
-    const Container = () => (
-      <div>
-        <Title />
-        <Button />
-      </div>
-    );
+    const CounterApp = () => {
+      const [clickCount, setClickCount] = useState(0);
 
-    ReactDOM.createRoot(root).render(<Container />);
+      const incrementClickCount = () => {
+        // 함수로 사용하는 이유 : 비동기적으로 상태가 업데이트될 때도 정확히 동작하도록 보장할 수 있다.
+        // setClickCount(clickCount + 1);
+        setClickCount((prevCount) => prevCount + 1);
+      };
+
+      return (
+        <div>
+          <h3>Total Clicks: {clickCount}</h3>
+          <button onClick={incrementClickCount}>Click Me!</button>
+        </div>
+      );
+    };
+
+    const rootElement = document.getElementById('root');
+    const root = createRoot(rootElement);
+    root.render(<CounterApp />);
   </script>
-
-  <!-- <script>
-      const rootNode = document.getElementById('root');
-
-      function handleClick() {
-        let count = 0;
-      }
-      const buttonElement = React.createElement(
-        'button',
-        { onClick: () => console.log('click') },
-        'Click me'
-      );
-      const h3Element = React.createElement(
-        'h3',
-        {
-          onMouseEnter: () => console.log('mouse enter'),
-        },
-        `Hello I'm a span`
-      );
-      const containerElement = React.createElement(
-        'div',
-        null,
-        h3Element,
-        buttonElement
-      );
-
-      ReactDOM.createRoot(rootNode).render(containerElement);
-    </script> -->
 </html>
