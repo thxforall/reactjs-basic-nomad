@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vanilla JS Counter</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      let counter = 0;
+
+      function render() {
+        const rootElement = document.getElementById('root');
+        rootElement.innerHTML = `
+          <div>
+            <h3>Total Click : ${counter}</h3>
+            <button id="clickButton">Click Me!!</button>
+          </div>
+        `;
+
+        document
+          .getElementById('clickButton')
+          .addEventListener('click', countUp);
+      }
+
+      function countUp() {
+        counter += 1;
+        render();
+      }
+
+      render();
+    </script>
+  </body>
+</html>

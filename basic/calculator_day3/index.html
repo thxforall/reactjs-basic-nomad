@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .result {
+        margin-top: 20px;
+      }
+      .result h2 {
+        text-align: center;
+      }
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .reset {
+        background-color: tomato;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const App = () => {
+        const [num1, setNum1] = React.useState("");
+        const [num2, setNum2] = React.useState("");
+        const [operation, setOperation] = React.useState("default");
+        const [result, setResult] = React.useState(null);
+
+        const handleNum1Change = (event) => {
+          setNum1(event.target.value);
+        };
+
+        const handleNum2Change = (event) => {
+          setNum2(event.target.value);
+        };
+
+        const handleOperationChange = (event) => {
+          setOperation(event.target.value);
+        };
+
+        const calculateResult = () => {
+          const number1 = parseFloat(num1);
+          const number2 = parseFloat(num2);
+
+          if (isNaN(number1) || isNaN(number2)) {
+            setResult("Invalid input");
+            return;
+          }
+
+          switch (operation) {
+            case "plus":
+              setResult(number1 + number2);
+              break;
+            case "minus":
+              setResult(number1 - number2);
+              break;
+            case "divide":
+              setResult(number1 / number2);
+              break;
+            case "multiply":
+              setResult(number1 * number2);
+              break;
+            default:
+              setResult("Please select an operation");
+              break;
+          }
+        };
+
+        const reset = () => {
+          setNum1("");
+          setNum2("");
+          setOperation("default");
+          setResult(null);
+        };
+
+        return (
+          <div className="container">
+            <h1>🔥 Calculator 🔥</h1>
+            <input
+              value={num1}
+              onChange={handleNum1Change}
+              placeholder="👉 Write a number..."
+              type="number"
+            />
+            <input
+              value={num2}
+              onChange={handleNum2Change}
+              placeholder="👉 And another one"
+              type="number"
+            />
+            <select value={operation} onChange={handleOperationChange}>
+              <option value="default">👉 Select Operation</option>
+              <option value="plus">+</option>
+              <option value="minus">-</option>
+              <option value="divide">/</option>
+              <option value="multiply">X</option>
+            </select>
+            <button onClick={calculateResult}>Calculate</button>
+            <button className="reset" onClick={reset}>
+              Reset
+            </button>
+            {result !== null && (
+              <div className="result">
+                <h2>The Result is: {result}</h2>
+              </div>
+            )}
+          </div>
+        );
+      };
+
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
