@@ -1,6 +1,3 @@
-물론이죠! ES6 문법을 바탕으로 내용을 업데이트하고, React Router의 최신 사용법으로 작성하겠습니다.
-
-```markdown
 # reactJs-basic-nomad
 
 React Challenge Step 1. ReactJs Basic
