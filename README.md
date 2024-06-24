@@ -11,6 +11,8 @@ React Challenge Step 1. ReactJs Basic
 3. Props Type
 4. React Router
 
+---
+
 ### 1. JSX
 
 JSX는 JavaScript와 XML의 조합으로, React에서 HTML을 작성하는 것과 비슷하게 코드를 작성할 수 있게 해줍니다. JSX를 사용하면 가독성이 높아지고, 코드가 직관적으로 변합니다.
@@ -97,5 +99,29 @@ const App = () => {
 };
 
 export default App;
-```
+
+```jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+function Home() {
+  return <h1>Home</h1>;
+}
+
+function About() {
+  return <h1>About</h1>;
+}
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;
 ```
