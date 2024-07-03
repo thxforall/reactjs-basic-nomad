@@ -11,6 +11,17 @@ React Challenge Step 1. ReactJs Basic
 3. Props Type
 4. React Router
 
+5. Style Component
+   5-1. Adapting and Extending
+   5-2. 'As' and Attrs
+   5-3. Animation and Pseudo
+   5-4. themes(light/dark)
+
+6. TypeScript & ReactJs
+   6-1. tsx
+   6-2. props, interface
+   6-3. optional props
+
 ---
 
 ### 1. JSX
@@ -42,9 +53,7 @@ const Example = () => {
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
     </div>
   );
 };
@@ -79,7 +88,7 @@ React Router는 SPA(single-page application)에서 라우팅을 쉽게 할 수 �
 
 **예시:**
 
-```jsx
+````jsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -124,4 +133,4 @@ function App() {
 }
 
 export default App;
-```
+````
