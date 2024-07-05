@@ -21,6 +21,8 @@ React Challenge Step 1. ReactJs Basic
    6-1. tsx
    6-2. props, interface
    6-3. optional props
+   6-4. forms, props
+   6-5. theme
 
 ---
 
