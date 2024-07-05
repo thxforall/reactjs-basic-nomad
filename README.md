@@ -24,6 +24,19 @@ React Challenge Step 1. ReactJs Basic
    6-4. forms, props
    6-5. theme
 
+7. React Router v.6
+   7-1. BrowseRouter
+   7-2. createBrowserRouter
+   7-3. errorElement
+   7-4. useNaviagte
+   7-5. useParams
+   7-6. outlet
+   7-7. useOuletContext
+   7-8. useSearchParameter
+
+8. Crypto Tracker
+   8-1. fetching data / react query
+
 ---
 
 ### 1. JSX
