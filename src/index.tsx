@@ -88,9 +88,11 @@ textarea:not([rows]) {
 }
 
 body {
-  font-family: 'Source Sns Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-family: 'Source Sans Pro', sans-serif;
   background-color:${(props) => props.theme.bgColor};
-  color:${(props) => props.theme.textColor}
+  color:${(props) => props.theme.textColor};
+  line-height: 1.2;
 }
 
 a {
