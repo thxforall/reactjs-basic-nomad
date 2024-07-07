@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { fetchCoins } from './api';
 
 const Container = styled.div`
   padding: 0 1rem;
@@ -48,42 +49,12 @@ const CoinsItem = styled.li`
   }
 `;
 
-const FetchErrorCoin = [
-  {
-    id: 'btc-bitcoin',
-    name: 'Bitcoin',
-    symbol: 'BTC',
-    rank: 1,
-    is_new: false,
-    is_active: true,
-    type: 'coin',
-  },
-  {
-    id: 'eth-ethereum',
-    name: 'Ethereum',
-    symbol: 'ETH',
-    rank: 2,
-    is_new: false,
-    is_active: true,
-    type: 'coin',
-  },
-  {
-    id: 'hex-hex',
-    name: 'HEX',
-    symbol: 'HEX',
-    rank: 3,
-    is_new: false,
-    is_active: true,
-    type: 'token',
-  },
-];
-
 const Title = styled.h1`
   font-size: 3rem;
   color: ${(props) => props.theme.accentColor};
 `;
 
-interface CoinInterface {
+interface ICoin {
   id: string;
   name: string;
   symbol: string;
@@ -93,45 +64,32 @@ interface CoinInterface {
   type: string;
 }
 
+interface RouterState {
+  state: {
+    name: string;
+  };
+}
+
 const Coins = () => {
-  const [coinsArray, setCoins] = useState<CoinInterface[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  interface RouterState {
-    state: {
-      name: string;
-    };
-  }
-
+  const { isLoading, data } = useQuery<ICoin[]>({
+    queryKey: ['allCoins'],
+    queryFn: fetchCoins,
+    select: (data) => data.slice(0, 20),
+  });
+  // const [coinsArray, setCoins] = useState<CoinInterface[]>([]);
+  // const [loading, setLoading] = useState(true);
   const { state } = useLocation() as RouterState;
-
-  const proxyCoinFetch =
-    'https://proxy.cors.sh/https://api.coinpaprika.com/v1/coins';
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch(proxyCoinFetch);
-        const data = await response.json();
-        setLoading(false);
-        setCoins(data.slice(0, 100));
-      } catch (error) {
-        setLoading(false);
-        setCoins(FetchErrorCoin);
-      }
-    })();
-  }, []);
 
   return (
     <Container>
       <Header>
         <Title>Coins</Title>
       </Header>
-      {loading ? (
+      {isLoading ? (
         <Loader>Loading ...</Loader>
       ) : (
         <CoinList>
-          {coinsArray.map((coin) => (
+          {data?.map((coin) => (
             <CoinsItem key={coin.id}>
               <Link to={`/${coin.id}`} state={{ name: coin.id }}>
                 <Img
