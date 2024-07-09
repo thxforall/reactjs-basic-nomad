@@ -4,10 +4,12 @@ import {
   useLocation,
   useParams,
   useMatch,
+  useOutletContext,
 } from 'react-router-dom';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import { fetcCoinTickers, fetchCoinInfo } from '../api/coinApi';
+import { useRecoilValue } from 'recoil';
 
 const Container = styled.div`
   padding: 0 1rem;
@@ -49,6 +51,8 @@ const Title = styled.h1`
   font-size: 3rem;
   color: ${(props) => props.theme.accentColor};
 `;
+
+const Button = styled.button``;
 
 const Loader = styled.span`
   text-align: center;
@@ -132,8 +136,14 @@ interface PriceData {
   };
 }
 
+interface ContextType {
+  toggleDarkMode: () => void;
+  isDark: boolean;
+}
+
 const Coin = () => {
   const { coinId } = useParams<Record<string, string | undefined>>();
+  const isDark = useRecoilValue(isdDarkAtom);
 
   const { isLoading: infoLoading, data: infoData } = useQuery({
     queryKey: ['coinInfo', coinId],

@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { fetchCoins} from '../api/coinApi';
+import { fetchCoins } from '../api/coinApi';
+import { isDarkAtom } from 'app/atoms';
+import { useSetRecoilState } from 'recoil';
 
 const Container = styled.div`
   padding: 0 1rem;
@@ -16,6 +18,8 @@ const Header = styled.header`
   align-items: center;
   margin-bottom: 0.5rem;
 `;
+
+const Button = styled.button``;
 
 const CoinList = styled.ul``;
 
@@ -70,6 +74,11 @@ interface RouterState {
   };
 }
 
+interface IRouterProps {
+  toggleDarkMode: () => void;
+  isDark: boolean;
+}
+
 const Coins = () => {
   const { isLoading, data } = useQuery<ICoin[]>({
     queryKey: ['allCoins'],
@@ -77,11 +86,14 @@ const Coins = () => {
     select: (data) => data.slice(0, 20),
   });
   const { state } = useLocation() as RouterState;
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
 
   return (
     <Container>
       <Header>
         <Title>Coins</Title>
+        <button onClick={toggleDarkAtom}>DarkMode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading ...</Loader>
