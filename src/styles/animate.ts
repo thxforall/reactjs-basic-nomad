@@ -26,3 +26,28 @@ export const circleVariants = {
     y: 0,
   },
 };
+
+export const hoverVariants = {
+  hover: {
+    rotateZ: 180,
+    scale: 1.02,
+  },
+  tap: {
+    borderRadius: '50%',
+  },
+};
+
+export const dragVariants = {
+  drag: {
+    backgroundColor: 'rgba(26,204,113,0.2)',
+    transition: { duration: 5 },
+  },
+};
+
+export const pathVariants = {
+  start: { fill: 'rgba(255, 255, 255, 0)', pathLength: 0 },
+  end: {
+    fill: 'rgba(255, 255, 255, 0.553)',
+    pathLength: 1,
+  },
+};
