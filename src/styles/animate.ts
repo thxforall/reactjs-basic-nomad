@@ -51,3 +51,44 @@ export const pathVariants = {
     pathLength: 1,
   },
 };
+
+export const modalVariants = {
+  initial: {
+    scale: 0,
+    opacity: 0,
+  },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    rotateZ: '360deg',
+  },
+  exit: {
+    scale: 0,
+    opacity: 0,
+    y: 50,
+  },
+};
+
+export const slideVariants = {
+  entry: {
+    x: 500,
+    opacity: 0,
+    scale: 0,
+  },
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+  exit: {
+    x: -500,
+    opacity: 0,
+    scale: 0,
+    transition: {
+      duration: 1,
+    },
+  },
+};

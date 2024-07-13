@@ -7,6 +7,10 @@ import {
   DragShape,
   ScrollShape,
   Svg,
+  BigContainer,
+  MiddleContainer,
+  GiantContainer,
+  Button,
 } from './styles/components';
 import GlobalStyle from './styles/GlobalStyle';
 import {
@@ -14,18 +18,37 @@ import {
   circleVariants,
   dragVariants,
   hoverVariants,
+  modalVariants,
   pathVariants,
+  slideVariants,
 } from './styles/animate';
-import { useRef } from 'react';
-import { motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState } from 'react';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 import { start } from 'repl';
 
 const App = () => {
   const dragBoxRef = useRef<HTMLDivElement>(null);
+
   const x = useMotionValue(0);
   const xTransForm = useTransform(x, [-100, 100], [-180, 180]);
   const { scrollY, scrollYProgress } = useScroll();
   const yTransForm = useTransform(scrollYProgress, [0, 1], [0.2, 2]);
+
+  const [showing, setShowing] = useState(false);
+
+  const toggleShowing = () => setShowing((prev) => !prev);
+
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const nextSlide = () =>
+    setSlideIndex((prev) => (prev === 10 ? 10 : prev + 1));
+  const prevSlide = () => setSlideIndex((prev) => (prev === 1 ? 1 : prev - 1));
 
   return (
     <>
@@ -78,6 +101,34 @@ const App = () => {
             </Svg>
           </Container>
         </Grid>
+        <BigContainer>
+          <AnimatePresence>
+            {showing ? (
+              <MiddleContainer
+                variants={modalVariants}
+                initial="initial"
+                animate="visible"
+                exit="exit"
+              />
+            ) : null}
+          </AnimatePresence>
+          <Button onClick={toggleShowing}>Click</Button>
+        </BigContainer>
+        <GiantContainer>
+          <AnimatePresence>
+            <MiddleContainer
+              key={slideIndex}
+              variants={slideVariants}
+              initial="entry"
+              animate="center"
+              exit="exit"
+            >
+              {slideIndex}
+            </MiddleContainer>
+          </AnimatePresence>
+          <Button onClick={nextSlide}>Next</Button>
+          <Button onClick={prevSlide}>Prev</Button>
+        </GiantContainer>
       </Wrapper>
     </>
   );

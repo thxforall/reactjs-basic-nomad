@@ -7,13 +7,38 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   align-items: center;
 `;
 
 export const Grid = styled.div`
   padding: 1rem;
   place-self: center;
+`;
+
+export const BigContainer = styled.div`
+  grid-column: 2 / 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem;
+`;
+
+export const GiantContainer = styled.div`
+  grid-column: 1 / -1;
+  grid-row: 3 / 5;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
 `;
 
 export const Container = styled(motion.div)`
@@ -27,6 +52,18 @@ export const Container = styled(motion.div)`
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
   overflow: hidden;
 `;
+
+export const MiddleContainer = styled(Container)`
+  width: 400px;
+  height: 200px;
+  border-radius: 32px;
+  position: absolute;
+  z-index: -1;
+  font-size: 5rem;
+  font-weight: 500;
+`;
+
+export const Button = styled.button``;
 
 export const CircleContainer = styled(Container)`
   display: grid;
