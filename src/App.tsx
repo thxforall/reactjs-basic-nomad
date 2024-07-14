@@ -11,6 +11,7 @@ import {
   MiddleContainer,
   GiantContainer,
   Button,
+  BiggerContainer,
 } from './styles/components';
 import GlobalStyle from './styles/GlobalStyle';
 import {
@@ -30,7 +31,6 @@ import {
   useScroll,
   useTransform,
 } from 'framer-motion';
-import { start } from 'repl';
 
 const App = () => {
   const dragBoxRef = useRef<HTMLDivElement>(null);
@@ -41,14 +41,20 @@ const App = () => {
   const yTransForm = useTransform(scrollYProgress, [0, 1], [0.2, 2]);
 
   const [showing, setShowing] = useState(false);
+  const [slideIndex, setSlideIndex] = useState(1);
+  const [back, setBack] = useState(false);
 
   const toggleShowing = () => setShowing((prev) => !prev);
 
-  const [slideIndex, setSlideIndex] = useState(0);
-
-  const nextSlide = () =>
+  const nextSlide = () => {
+    setBack(false);
     setSlideIndex((prev) => (prev === 10 ? 10 : prev + 1));
-  const prevSlide = () => setSlideIndex((prev) => (prev === 1 ? 1 : prev - 1));
+  };
+
+  const prevSlide = () => {
+    setBack(true);
+    setSlideIndex((prev) => (prev === 1 ? 1 : prev - 1));
+  };
 
   return (
     <>
@@ -90,8 +96,8 @@ const App = () => {
             <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <motion.path
                 variants={pathVariants}
-                initial={'start'}
-                animate={'end'}
+                initial="start"
+                animate="end"
                 transition={{
                   default: { duration: 5 },
                   fill: { duration: 2, delay: 3 },
@@ -103,20 +109,21 @@ const App = () => {
         </Grid>
         <BigContainer>
           <AnimatePresence>
-            {showing ? (
+            {showing && (
               <MiddleContainer
                 variants={modalVariants}
                 initial="initial"
                 animate="visible"
                 exit="exit"
               />
-            ) : null}
+            )}
           </AnimatePresence>
           <Button onClick={toggleShowing}>Click</Button>
         </BigContainer>
         <GiantContainer>
-          <AnimatePresence>
+          <AnimatePresence mode="wait" custom={back}>
             <MiddleContainer
+              custom={back}
               key={slideIndex}
               variants={slideVariants}
               initial="entry"
@@ -129,6 +136,8 @@ const App = () => {
           <Button onClick={nextSlide}>Next</Button>
           <Button onClick={prevSlide}>Prev</Button>
         </GiantContainer>
+        <BiggerContainer>
+        </BiggerContainer>
       </Wrapper>
     </>
   );

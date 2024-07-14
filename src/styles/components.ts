@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100vw;
-  height: 120vh;
+  height: 140vh;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -30,7 +30,20 @@ export const BigContainer = styled.div`
 
 export const GiantContainer = styled.div`
   grid-column: 1 / -1;
-  grid-row: 3 / 5;
+  grid-row: 3 / 4;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+`;
+
+export const BiggerContainer = styled.div`
+  grid-column: 1 / -1;
+  grid-row: 4 / 5;
   width: 100%;
   height: 100%;
   padding: 2rem 1rem;
