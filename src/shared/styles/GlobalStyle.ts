@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
  
 /* Box sizing rules */
 *,
@@ -80,10 +80,14 @@ textarea:not([rows]) {
 }
 
 body {
-  font-weight: 300;
-  font-family: 'Source Sans Pro', sans-serif;
-  color:black;
+  width:100%;
+  height:100vh;
+  font-family: "Oswald", sans-serif;
+  background-color:${(props) => props.theme.color.background};
+  color:${(props) => props.theme.color.text};
+  font-weight: 400;
   line-height: 1.2;
+  margin:0;
 }
 
 a {
