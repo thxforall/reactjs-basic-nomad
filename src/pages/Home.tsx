@@ -6,9 +6,7 @@ import Banner from 'widgets/banner/Banner';
 import Slides from 'widgets/slides/Slides';
 
 const Home = () => {
-  const { data, isLoading, error } = useNowPlayingMovies();
-
-  console.log(data, isLoading, error);
+  const { isLoading } = useNowPlayingMovies();
 
   return (
     <>

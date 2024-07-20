@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import {
+  BoxInfo,
+  infoVar,
+  Modal,
   SlideBox,
+  SlideBoxVar,
   SlideRow,
   SlideRowVar,
   SlidesWrapper,
@@ -8,6 +12,7 @@ import {
 import { AnimatePresence } from 'framer-motion';
 import { useNowPlayingMovies } from 'features/movie/hooks';
 import { makeImgPath } from 'features/movie/utils';
+import { useMatch, useNavigate } from 'react-router-dom';
 
 const Slides = () => {
   const { data } = useNowPlayingMovies();
@@ -28,6 +33,14 @@ const Slides = () => {
 
   const OFFSET = 6;
 
+  const navigate = useNavigate();
+  const moviePathMatch = useMatch('movie/:movieId');
+
+  const onBoxClicked = (movieId: number) => {
+    console.log(moviePathMatch);
+    navigate(`/movie/${movieId}`);
+  };
+
   return (
     <SlidesWrapper onClick={increaseIndex}>
       <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
@@ -47,12 +60,27 @@ const Slides = () => {
                 <SlideBox
                   key={movie.id}
                   bgPhoto={makeImgPath(movie.backdrop_path, 'w500')}
+                  variants={SlideBoxVar}
+                  initial="initial"
+                  whileHover="hover"
+                  transition={{ type: 'tween' }}
+                  layoutId={movie.id + ''}
                 >
-                  {movie.title}
+                  <BoxInfo
+                    variants={infoVar}
+                    onClick={() => onBoxClicked(movie.id)}
+                  >
+                    <h4>{movie.title}</h4>
+                  </BoxInfo>
                 </SlideBox>
               ))}
           </SlideRow>
         ))}
+      </AnimatePresence>
+      <AnimatePresence>
+        {moviePathMatch ? (
+          <Modal layoutId={moviePathMatch.params.movieId}></Modal>
+        ) : null}
       </AnimatePresence>
     </SlidesWrapper>
   );
