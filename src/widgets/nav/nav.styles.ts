@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
@@ -23,7 +23,7 @@ export const NavItem = styled(motion.li)`
   margin: ${(props) => props.theme.size.space[6]};
 `;
 
-export const navItemVariants = {
+export const navItemVariants: Variants = {
   initial: {
     scale: 1,
   },

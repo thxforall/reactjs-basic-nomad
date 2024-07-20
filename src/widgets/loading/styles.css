@@ -1,0 +1,11 @@
+.circle {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.letter {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  color: rgba(227, 9, 19, 1);
+}

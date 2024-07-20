@@ -2,7 +2,7 @@ import { SharedTheme } from 'styled-components';
 
 export const darkTheme: SharedTheme = {
   color: {
-    primary: 'rgba(216, 31, 38, 1)',
+    primary: 'rgba(227, 9, 19, 1)',
     primaryLight: 'rgba(255, 71, 71, 1)',
     primaryDark: 'rgba(176, 6, 15, 1)',
     accent: 'rgba(174, 6, 16, 1)',
@@ -18,8 +18,8 @@ export const darkTheme: SharedTheme = {
       8: '2rem',
     },
     radius: {
-      small: '4px',
-      medium: '8px',
+      small: '8px',
+      medium: '12px',
     },
   },
   shadow: {
@@ -29,7 +29,7 @@ export const darkTheme: SharedTheme = {
 
 export const lightTheme: SharedTheme = {
   color: {
-    primary: 'rgba(216, 31, 38, 1)',
+    primary: 'rgba(227, 9, 19, 1)',
     primaryLight: 'rgba(255, 71, 71, 1)',
     primaryDark: 'rgba(176, 6, 15, 1)',
     accent: 'rgba(174, 6, 16, 1)',

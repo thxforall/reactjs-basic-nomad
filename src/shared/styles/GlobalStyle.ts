@@ -81,7 +81,7 @@ textarea:not([rows]) {
 
 body {
   width:100%;
-  height:100vh;
+  height:160vh;
   font-family: "Oswald", sans-serif;
   background-color:${(props) => props.theme.color.background};
   color:${(props) => props.theme.color.text};

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 export const Logo = styled(motion.svg)`
   margin-right: 3rem;
   width: 120px;
 `;
 
-export const logoVariants = {
+export const logoVariants: Variants = {
   initial: {
     fill: 'rgba(216, 31, 38, 0)',
   },
