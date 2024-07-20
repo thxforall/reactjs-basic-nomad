@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
@@ -13,22 +14,29 @@ export const NavItems = styled.ul`
   grid-template-columns: 0.5fr 0.5fr auto;
 `;
 
-export const NavItem = styled.li`
+export const NavItem = styled(motion.li)`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   position: relative;
   margin: ${(props) => props.theme.size.space[6]};
-  &:hover {
-  }
 `;
 
-export const Circle = styled.span`
+export const navItemVariants = {
+  initial: {
+    scale: 1,
+  },
+  animate: (isTrue: boolean) => ({
+    scale: isTrue ? 1.2 : 1,
+  }),
+};
+
+export const Circle = styled(motion.span)`
   position: absolute;
   width: 0.3rem;
   height: 0.3rem;
   border-radius: 50%;
-  bottom: -10px;
+  bottom: -8px;
   background-color: ${(props) => props.theme.color.text};
 `;

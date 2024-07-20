@@ -1,5 +1,11 @@
+import Header from 'widgets/header/Header';
+
 const Movie = () => {
-  return <h1>Movie</h1>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default Movie;
