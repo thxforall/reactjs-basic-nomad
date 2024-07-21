@@ -71,12 +71,12 @@ export const BoxInfo = styled(motion.div)`
   }
 `;
 
-export const Modal = styled(motion.div)`
-  position: absolute;
-  width: 60%;
-  height: 60vh;
+export const Modal = styled(motion.div)<{ scrollY: number }>`
+  position: fixed;
+  width: 60vw;
+  height: 70vh;
   background-color: white;
-  top: 10;
+  top: ${(props) => props.scrollY + 190}px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -92,3 +92,12 @@ export const infoVar: Variants = {
     },
   },
 };
+
+export const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+`;

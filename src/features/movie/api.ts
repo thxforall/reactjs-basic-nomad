@@ -32,7 +32,7 @@ export interface IGetMoviesResult {
 export const getMovies = async (): Promise<IGetMoviesResult> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/movie/now_playing?api_key=${API_KEY}/language=en-US&page=1`,
+      `${BASE_URL}/movie/now_playing?api_key=${API_KEY}?language=en-US&page=1`,
       options
     );
     if (!response.ok) {
@@ -47,3 +47,22 @@ export const getMovies = async (): Promise<IGetMoviesResult> => {
     throw error;
   }
 };
+
+// export const getMovieById = async (): Promise<IGetMoviesResult> => {
+//   try {
+//     const response = await fetch(
+//       `${BASE_URL}/movie/movie_id?${movie_id}?api_key=${API_KEY}?language=en-US&page=1`,
+//       options
+//     );
+//     if (!response.ok) {
+//       throw new Error('API response was not ok');
+//     }
+//     const data: IGetMoviesResult = await response.json();
+//     await new Promise((resolve) => setTimeout(resolve, 3000));
+
+//     return data;
+//   } catch (error) {
+//     console.error('Fetch error:', error);
+//     throw error;
+//   }
+// };

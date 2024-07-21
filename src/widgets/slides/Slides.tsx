@@ -3,13 +3,14 @@ import {
   BoxInfo,
   infoVar,
   Modal,
+  Overlay,
   SlideBox,
   SlideBoxVar,
   SlideRow,
   SlideRowVar,
   SlidesWrapper,
 } from './slides.styles';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, useScroll } from 'framer-motion';
 import { useNowPlayingMovies } from 'features/movie/hooks';
 import { makeImgPath } from 'features/movie/utils';
 import { useMatch, useNavigate } from 'react-router-dom';
@@ -40,6 +41,12 @@ const Slides = () => {
     console.log(moviePathMatch);
     navigate(`/movie/${movieId}`);
   };
+
+  const onOverlayClicked = () => {
+    navigate(-1);
+  };
+
+  const { scrollY } = useScroll();
 
   return (
     <SlidesWrapper onClick={increaseIndex}>
@@ -79,7 +86,13 @@ const Slides = () => {
       </AnimatePresence>
       <AnimatePresence>
         {moviePathMatch ? (
-          <Modal layoutId={moviePathMatch.params.movieId}></Modal>
+          <>
+            <Overlay onClick={onOverlayClicked} animate={{ opacity: 1 }} />
+            <Modal
+              layoutId={moviePathMatch.params.movieId}
+              scrollY={scrollY.get()}
+            ></Modal>
+          </>
         ) : null}
       </AnimatePresence>
     </SlidesWrapper>
